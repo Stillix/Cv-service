@@ -1,0 +1,45 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.10.xsd">
+
+    <changeSet id="003-insert-data-directions" author="dorogokupets">
+        <insert tableName="directions" schemaName="cvservice">
+            <column name="id_direction" valueSequenceNext="direction_sequence"/>
+            <column name="name" value="backend"/>
+            <column name="description" value="backend: java, c++, python"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="004-insert-data-tests" author="dorogokupets">
+        <insert tableName="tests" schemaName="cvservice">
+            <column name="id_test" valueSequenceNext="test_sequence"/>
+            <column name="title" value="Тест по java core"/>
+            <column name="description" value="Тест предназначен для junior java developers"/>
+            <column name="direction_id" value="1"/>
+        </insert>
+    </changeSet>
+    <changeSet id="001-insert-data-candidates" author="dorogokupets">
+        <insert tableName="candidates" schemaName="cvservice">
+            <column name="id_candidate" valueSequenceNext="candidate_sequence"/>
+            <column name="first_name" value="Дмитрий"/>
+            <column name="last_name" value="Гордеев"/>
+            <column name="patronymic" value="Александрович"/>
+            <column name="photo" value="photo"/>
+            <column name="description" value="22 года. 1 год разработки"/>
+            <column name="CV_file" value="file"/>
+            <column name="possible_directions" value="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="002-insert-data-candidate-test-results" author="dorogokupets">
+        <insert tableName="candidate_test_results" schemaName="cvservice">
+            <column name="id_test_result" valueSequenceNext="test_result_sequence"/>
+            <column name="candidate_id" value="1"/>
+            <column name="test_id" value="1"/>
+            <column name="date" value="2023-10-17 23:46:24.364285"/>
+            <column name="mark" value="87"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

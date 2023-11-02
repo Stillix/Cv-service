@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.10.xsd">
+
+    <changeSet author="dorogokupets" id="create-candidate-sequence">
+        <createSequence schemaName="cvservice" sequenceName="candidate_sequence" incrementBy="1" startValue="1"
+                        minValue="1"/>
+    </changeSet>
+
+    <changeSet author="dorogokupets" id="create-test-sequence">
+        <createSequence schemaName="cvservice" sequenceName="test_sequence" incrementBy="1" startValue="1"
+                        minValue="1"/>
+    </changeSet>
+
+    <changeSet author="dorogokupets" id="create-direction-sequence">
+        <createSequence schemaName="cvservice" sequenceName="direction_sequence" incrementBy="1" startValue="1"
+                        minValue="1"/>
+    </changeSet>
+
+    <changeSet author="dorogokupets" id="create-test-result-sequence">
+        <createSequence schemaName="cvservice" sequenceName="test_result_sequence" incrementBy="1" startValue="1"
+                        minValue="1"/>
+    </changeSet>
+</databaseChangeLog>
