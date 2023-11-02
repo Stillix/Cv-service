@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Notices</title>
@@ -7,19 +7,24 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body style="background-color: #f0f0f0;">
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="direction : ${directionList}">
-        <td th:text="${direction.name}"></td>
-        <td th:text="${direction.description}"></td>
-    </tr>
-    </tbody>
-</table>
+
+    <h2 style="color: #007bff;">Направления</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th>Название</th>
+                <th>Описание</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="direction : ${directionList}">
+                <td th:text="${direction.name}"></td>
+                <td th:text="${direction.description}"></td>
+          </tr>
+            </tbody>
+        </table>
+    </div>
+
 </body>
 </html>
