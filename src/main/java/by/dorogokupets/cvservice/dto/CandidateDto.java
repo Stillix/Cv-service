@@ -2,8 +2,11 @@ package by.dorogokupets.cvservice.dto;
 
 import lombok.*;
 
-@Data
+@Getter
+@Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CandidateDto {
   private Long candidateId;
   private String firstName;
@@ -12,5 +15,5 @@ public class CandidateDto {
   private String photo;
   private String description;
   private String cvFile;
-  private int direction;
+  private int possibleDirections;
 }

@@ -9,5 +9,5 @@ public class TestDto {
   private long testId;
   private String title;
   private String description;
-  private String direction;
+  private int direction;
 }
