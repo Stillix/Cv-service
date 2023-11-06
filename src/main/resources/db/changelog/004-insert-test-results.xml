@@ -1,0 +1,16 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.10.xsd">
+
+    <changeSet id="002-insert-data-candidate-test-results" author="dorogokupets">
+        <insert tableName="candidate_test_results" schemaName="cvservice">
+            <column name="id_test_result" valueSequenceNext="test_result_sequence"/>
+            <column name="candidate_id" value="1"/>
+            <column name="test_id" value="1"/>
+            <column name="date" value="2023-10-17 23:46:24.364285"/>
+            <column name="mark" value="87"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

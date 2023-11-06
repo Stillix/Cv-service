@@ -1,0 +1,15 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.10.xsd">
+
+
+    <changeSet id="004-insert-data-tests" author="dorogokupets">
+        <insert tableName="tests" schemaName="cvservice">
+            <column name="id_test" valueSequenceNext="test_sequence"/>
+            <column name="title" value="Тест по java core"/>
+            <column name="description" value="Тест предназначен для junior java developers"/>
+            <column name="direction_id" value="1"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

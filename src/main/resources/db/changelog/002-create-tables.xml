@@ -26,7 +26,7 @@
             <column name="patronymic" type="VARCHAR(30)"/>
             <column name="photo" type="text"/>              <!--fix -->
             <column name="description" type="text"/>
-            <column name="CV_file" type="text"/>            <!--fix -->
+            <column name="cv_file" type="text"/>            <!--fix -->
             <column name="possible_directions" type="bigint"/>
         </createTable>
         <addForeignKeyConstraint baseTableName="candidates" baseColumnNames="possible_directions"
