@@ -8,6 +8,10 @@ import java.util.List;
 
 public interface TestService {
   List<Test> findAll();
-  void updateCandidate(TestDto testDto);
+
+  TestDto findTestDtoById(Long id);
+
+  void update(TestDto testDto);
+
   void save(TestDto TestDto);
 }

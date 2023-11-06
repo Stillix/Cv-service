@@ -9,4 +9,8 @@ public interface DirectionService {
   List<Direction> findAll();
   void update(DirectionDto directionDto);
   void save(DirectionDto directionDto);
+
+  DirectionDto findDirectionDtoById(Long id);
+
+  Direction createDirection(DirectionDto directionDto);
 }
