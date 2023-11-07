@@ -4,32 +4,39 @@ import by.dorogokupets.cvservice.dto.CandidateDto;
 import by.dorogokupets.cvservice.exception.ServiceException;
 import by.dorogokupets.cvservice.model.Candidate;
 import by.dorogokupets.cvservice.service.CandidateService;
-import jakarta.servlet.http.HttpServletRequest;
+import by.dorogokupets.cvservice.service.FilesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
+import static by.dorogokupets.cvservice.controller.RequestAttributeName.*;
 
 @Controller
 public class CandidateController {
-  public static final String MESSAGE = "message";
+
   private final CandidateService candidateService;
+  private final FilesService filesService;
 
   @Autowired
-  public CandidateController(CandidateService candidateService) {
+  public CandidateController(CandidateService candidateService,
+                             FilesService filesService) {
     this.candidateService = candidateService;
+    this.filesService = filesService;
   }
 
   @GetMapping("/cv-service/candidates")
-  public String showCandidates(Model model) {
-    List<CandidateDto> candidateDTOList = candidateService.findAll();
-    model.addAttribute("candidateDTOList", candidateDTOList);
+  public String showCandidates(
+          @RequestParam(defaultValue = "1") int page,
+          @RequestParam(defaultValue = "lastName") String sortBy,
+          @RequestParam(defaultValue = "ASC") String sortDirection,
+          Model model
+  ) {
+    Page<Candidate> candidatePage = candidateService.findAll(page - 1, 8, sortBy, sortDirection);
+    model.addAttribute(CANDIDATE_PAGE, candidatePage);
     return "candidates";
   }
 
@@ -40,20 +47,30 @@ public class CandidateController {
     return "redirect:/client/notices";
   }
 
-//  @GetMapping("/cv-service/candidate/create-candidate")
-//  public String showCreateForm(Model model) {
-//    model.addAttribute("notice", new Candidate());
-//    return "candidate-form";
-//  }
+  @GetMapping("/cv-service/candidate/new")
+  public String showCreateForm(Model model) {
+    model.addAttribute(CANDIDATE_DTO, new CandidateDto());
+    return "candidate-form";
+  }
+
+  @PostMapping(path = "/cv-service/candidate/save", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+  public String saveCandidate(RedirectAttributes redirectAttributes, @ModelAttribute CandidateDto candidateDTO) throws ServiceException {
+    candidateService.save(candidateDTO);
+    redirectAttributes.addFlashAttribute(MESSAGE, "Candidate has been add successfully");
+    return "redirect:/cv-service/candidates";
+  }
+
   @GetMapping("/cv-service/candidate/edit/{id}")
   public String showEditForm(@PathVariable("id") Long candidateId, Model model) {
     CandidateDto candidateDTO = candidateService.findCandidateDtoById(candidateId);
-    model.addAttribute("candidateDTO", candidateDTO);
+    model.addAttribute(CANDIDATE_DTO, candidateDTO);
     return "edit-candidate";
   }
-  @PostMapping("/cv-service/candidates/update")
-  public String updateCandidate(@ModelAttribute CandidateDto candidateDTO) {
+
+  @PostMapping(path = "/cv-service/candidates/update", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+  public String updateCandidate(@ModelAttribute CandidateDto candidateDTO, RedirectAttributes redirectAttributes) throws ServiceException {
     candidateService.update(candidateDTO);
+    redirectAttributes.addFlashAttribute(MESSAGE, "Candidate has been update successfully");
     return "redirect:/cv-service/candidates";
   }
 

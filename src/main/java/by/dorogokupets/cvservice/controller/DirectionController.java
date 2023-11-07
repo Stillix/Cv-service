@@ -1,21 +1,20 @@
 package by.dorogokupets.cvservice.controller;
 
-import by.dorogokupets.cvservice.dto.CandidateDto;
 import by.dorogokupets.cvservice.dto.DirectionDto;
 import by.dorogokupets.cvservice.model.Direction;
 import by.dorogokupets.cvservice.service.DirectionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
+import static by.dorogokupets.cvservice.controller.RequestAttributeName.*;
 
 @Controller
 public class DirectionController {
+  public static final String DIRECTION_DTO = "directionDto";
   private final DirectionService directionService;
 
   @Autowired
@@ -23,29 +22,44 @@ public class DirectionController {
     this.directionService = directionService;
   }
 
+
   @GetMapping("/cv-service/directions")
-  public String showDirectionList(Model model) {
-    List<Direction> directionList = directionService.findAll();
-    model.addAttribute("directionList", directionList);
+  public String showDirections(
+          @RequestParam(defaultValue = "1") int page,
+          @RequestParam(defaultValue = "name") String sortBy,
+          @RequestParam(defaultValue = "ASC") String sortDirection,
+          Model model
+  ) {
+    Page<Direction> directionPage = directionService.findAll(page -1, 8, sortBy, sortDirection);
+    model.addAttribute(DIRECTION_PAGE, directionPage);
     return "directions";
   }
 
-  @PostMapping("/cv-service/direction")
-  public String createDirection(Model model) {
-//    Direction direction= directionService.createDirection();
-//    model.addAttribute("direction", direction);
-    return "directions";
+  @GetMapping("/cv-service/direction/new")
+  public String showCreateForm(Model model) {
+    model.addAttribute(DIRECTION_DTO, new DirectionDto());
+    return "direction-form";
+  }
+
+  @PostMapping("/cv-service/direction/save")
+  public String saveDirection(@ModelAttribute DirectionDto directionDto, RedirectAttributes redirectAttributes) {
+    directionService.save(directionDto);
+    redirectAttributes.addFlashAttribute(MESSAGE, "Direction has been add successfully");
+    return "redirect:/cv-service/directions";
   }
 
   @GetMapping("/cv-service/direction/edit/{id}")
   public String showEditForm(@PathVariable("id") Long candidateId, Model model) {
     DirectionDto directionDto = directionService.findDirectionDtoById(candidateId);
-    model.addAttribute("directionDto", directionDto);
+    model.addAttribute(DIRECTION_DTO, directionDto);
     return "edit-direction";
   }
+
   @PostMapping("/cv-service/direction/update")
-  public String updateDirection(@ModelAttribute DirectionDto directionDto) {
+  public String updateDirection(@ModelAttribute DirectionDto directionDto, RedirectAttributes redirectAttributes) {
     directionService.update(directionDto);
+    redirectAttributes.addFlashAttribute(MESSAGE, "Direction has been update successfully");
+
     return "redirect:/cv-service/directions";
   }
 }
