@@ -3,14 +3,22 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.10.xsd">
 
-    <changeSet id="002-insert-data-candidate-test-results" author="dorogokupets">
+    <changeSet id="001-insert-data-candidate-test-results" author="dorogokupets">
         <insert tableName="candidate_test_results" schemaName="cvservice">
             <column name="id_test_result" valueSequenceNext="test_result_sequence"/>
             <column name="candidate_id" value="1"/>
             <column name="test_id" value="1"/>
-            <column name="date" value="2023-10-17 23:46:24.364285"/>
-            <column name="mark" value="87"/>
+            <column name="date" value="2023-11-02 15:21:49.364285"/>
+            <column name="mark" value="39"/>
         </insert>
     </changeSet>
-
+    <changeSet id="002-insert-data-candidate-test-results" author="dorogokupets">
+        <insert tableName="candidate_test_results" schemaName="cvservice">
+            <column name="id_test_result" valueSequenceNext="test_result_sequence"/>
+            <column name="candidate_id" value="1"/>
+            <column name="test_id" value="2"/>
+            <column name="date" value="2023-10-17 23:46:24.364285"/>
+            <column name="mark" value="56"/>
+        </insert>
+    </changeSet>
 </databaseChangeLog>

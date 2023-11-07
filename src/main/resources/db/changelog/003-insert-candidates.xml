@@ -1,0 +1,18 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.10.xsd">
+
+
+    <changeSet id="001-insert-data-candidates" author="dorogokupets">
+        <insert tableName="candidates" schemaName="cvservice">
+            <column name="id_candidate" valueSequenceNext="candidate_sequence"/>
+            <column name="first_name" value="Илья"/>
+            <column name="last_name" value="Дорогокупец"/>
+            <column name="patronymic" value="Васильевич"/>
+            <column name="description" value="Студент БНТУ. 20 лет."/>
+            <column name="direction" value="1"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

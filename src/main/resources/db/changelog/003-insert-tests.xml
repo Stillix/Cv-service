@@ -4,12 +4,91 @@
                     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.10.xsd">
 
 
+    <changeSet id="001-insert-data-tests" author="dorogokupets">
+        <insert tableName="tests" schemaName="cvservice">
+            <column name="id_test" valueSequenceNext="test_sequence"/>
+            <column name="title" value="Тест по Java Core"/>
+            <column name="description" value="Тест предназначен для стажеров на языке Java."/>
+            <column name="direction_id" value="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="002-insert-data-tests" author="dorogokupets">
+        <insert tableName="tests" schemaName="cvservice">
+            <column name="id_test" valueSequenceNext="test_sequence"/>
+            <column name="title" value="Тест по Java EE"/>
+            <column name="description" value="Тест предназначен для Junior Java developers. Включает в себя вопросы по EJB, JPA, JSP, Servlet, JTA, Security."/>
+            <column name="direction_id" value="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="003-insert-data-tests" author="dorogokupets">
+        <insert tableName="tests" schemaName="cvservice">
+            <column name="id_test" valueSequenceNext="test_sequence"/>
+            <column name="title" value="Тест по Spring"/>
+            <column name="description" value="Тест предназначен для Junior Java developers. Тест на знание основ по фреймворку."/>
+            <column name="direction_id" value="1"/>
+        </insert>
+    </changeSet>
+
     <changeSet id="004-insert-data-tests" author="dorogokupets">
         <insert tableName="tests" schemaName="cvservice">
             <column name="id_test" valueSequenceNext="test_sequence"/>
-            <column name="title" value="Тест по java core"/>
-            <column name="description" value="Тест предназначен для junior java developers"/>
-            <column name="direction_id" value="1"/>
+            <column name="title" value="Тест по html"/>
+            <column name="description" value="Тест предназначен для front-end разработчиков."/>
+            <column name="direction_id" value="2"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="005-insert-data-tests" author="dorogokupets">
+        <insert tableName="tests" schemaName="cvservice">
+            <column name="id_test" valueSequenceNext="test_sequence"/>
+            <column name="title" value="Тест по JavaScript"/>
+            <column name="description" value="Тест предназначен для front-end разработчиков по основам JavaScript."/>
+            <column name="direction_id" value="2"/>
+        </insert>
+    </changeSet>
+    <changeSet id="006-insert-data-tests" author="dorogokupets">
+        <insert tableName="tests" schemaName="cvservice">
+            <column name="id_test" valueSequenceNext="test_sequence"/>
+            <column name="title" value="Вступительный тест для DevOps"/>
+            <column name="description" value="Тест предназначен для Junior DevOps"/>
+            <column name="direction_id" value="3"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="007-insert-data-tests" author="dorogokupets">
+        <insert tableName="tests" schemaName="cvservice">
+            <column name="id_test" valueSequenceNext="test_sequence"/>
+            <column name="title" value="Тест для DevOps"/>
+            <column name="description" value="Тест предназначен для Middle DevOps."/>
+            <column name="direction_id" value="3"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="008-insert-data-tests" author="dorogokupets">
+        <insert tableName="tests" schemaName="cvservice">
+            <column name="id_test" valueSequenceNext="test_sequence"/>
+            <column name="title" value="UI/UX тест"/>
+            <column name="description" value="Тест предназначен для Junior."/>
+            <column name="direction_id" value="4"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="009-insert-data-tests" author="dorogokupets">
+        <insert tableName="tests" schemaName="cvservice">
+            <column name="id_test" valueSequenceNext="test_sequence"/>
+            <column name="title" value="UI/UX тест"/>
+            <column name="description" value="Тест предназначен для Middle."/>
+            <column name="direction_id" value="4"/>
+        </insert>
+    </changeSet>
+    <changeSet id="010-insert-data-tests" author="dorogokupets">
+        <insert tableName="tests" schemaName="cvservice">
+            <column name="id_test" valueSequenceNext="test_sequence"/>
+            <column name="title" value="Тест Data scientist"/>
+            <column name="description" value="Тест предназначен для Junior Data scientist."/>
+            <column name="direction_id" value="5"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
