@@ -99,24 +99,34 @@
 </header>
 <br>
 <h1 style="color: white;">Список кандидатов</h1>
+<p><a class="btn btn-primary" href="/cv-service/candidate/new" style="background-color: lightgreen; border-color: black; color: white">Add candidate</a></p>
 <div th:if="${message}" class="alert alert-success text-center">
     [[${message}]]
 </div>
 <div class="candidates">
-    <div th:each="CandidateDto : ${candidateDTOList}">
+    <div th:each="candidateDto : ${candidateDTOList}">
         <div class="candidate">
-            <img th:src="${CandidateDto.photo}" alt="Фото кандидата">
-            <h2 th:text="${CandidateDto.lastName + ' ' + CandidateDto.firstName + ' ' + CandidateDto.patronymic}"></h2>
-            <p class="description" th:text="${CandidateDto.description}"></p>
-            <a th:href="${CandidateDto.cvFile}">Скачать CV</a>
+            <img th:src="@{'/cv-service/images/' + ${candidateDto.candidateId}}" alt="Фото кандидата">
+            <h2 th:text="${candidateDto.lastName + ' ' + candidateDto.firstName + ' ' + candidateDto.patronymic}"></h2>
+            <p class="description" th:text="${candidateDto.description}"></p>
+            <p><a th:href="@{'/cv-service/download-file/' + ${candidateDto.candidateId}}">Скачать CV</a></p>
             <p>Список возможных направлений:</p>
             <ul>
-                <li th:each="direction : ${CandidateDto.possibleDirections}" th:text="${direction}"></li>
+                <li th:each="direction : ${candidateDto.possibleDirections}" th:text="${direction}"></li>
             </ul>
-            <a th:href="@{'/cv-service/candidate/edit/'+${CandidateDto.candidateId}}" class="btn btn-primary"
-               style="background-color: #007bff; border-color: #007bff; color: white">Edit</a>
+            <a th:href="@{'/cv-service/candidate/edit/' + ${candidateDto.candidateId}}" class="btn btn-primary">Редактировать</a>
         </div>
     </div>
 </div>
+
+<nav aria-label="Pagination" th:if="${candidatePage.totalPages gt 0}">
+    <ul class="pagination justify-content-center font-weight-bold">
+        <li class="page-item" th:classappend="${i eq candidatePage.number + 1} ? 'active'"
+            th:each="i : ${#numbers.sequence( 1, candidatePage.totalPages, 1)}">
+            <a class="page-link" th:href="@{/cv-service/candidates?page={id}(id=${i})}" th:text="${i}"
+               th:title="${'Page '+ i}" data-toggle="tooltip"></a>
+        </li>
+    </ul>
+</nav>
 </body>
 </html>

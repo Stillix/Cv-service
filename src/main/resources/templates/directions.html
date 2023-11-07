@@ -44,6 +44,10 @@
     </nav>
 </header><br><br>
 <h1 style="color: white;">Направления</h1>
+<p><a class="btn btn-primary" href="/cv-service/direction/new" style="background-color: lightgreen; border-color: black; color: white">Add direction</a></p>
+<div th:if="${message}" class="alert alert-success text-center">
+    [[${message}]]
+</div>
 <div class="table-responsive">
     <table class="table table-bordered table-hover">
         <thead class="thead-dark">
@@ -54,7 +58,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="direction : ${directionList}">
+        <tr th:each="direction : ${directionDtoList}">
             <td th:text="${direction.name}"></td>
             <td th:text="${direction.description}"></td>
             <td><a th:href="@{'/cv-service/direction/edit/'+${direction.directionId}}" class="btn btn-primary"
@@ -64,5 +68,14 @@
     </table>
 </div>
 
+<nav aria-label="Pagination" th:if="${directionPage.totalPages gt 0}">
+    <ul class="pagination justify-content-center font-weight-bold">
+        <li class="page-item" th:classappend="${i eq directionPage.number + 1} ? 'active'"
+            th:each="i : ${#numbers.sequence( 1, directionPage.totalPages, 1)}">
+            <a class="page-link" th:href="@{/cv-service/directions?page={id}(id=${i})}" th:text="${i}"
+               th:title="${'Page '+ i}" data-toggle="tooltip"></a>
+        </li>
+    </ul>
+</nav>
 </body>
 </html>
