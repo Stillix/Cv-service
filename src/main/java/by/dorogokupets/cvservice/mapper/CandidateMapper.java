@@ -1,9 +1,9 @@
 package by.dorogokupets.cvservice.mapper;
 
+
 import by.dorogokupets.cvservice.dto.CandidateDto;
 import by.dorogokupets.cvservice.model.Candidate;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
 @Mapper
