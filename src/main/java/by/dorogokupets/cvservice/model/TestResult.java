@@ -2,11 +2,8 @@ package by.dorogokupets.cvservice.model;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
-import jakarta.persistence.Entity;
 
 @Entity
 @Getter
@@ -18,7 +15,9 @@ import jakarta.persistence.Entity;
 @Table(name = "candidate_test_results")
 public class TestResult {
   @Id
-  @Column(name = "id_test_result")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "test_result_sequence")
+  @SequenceGenerator(name = "test_result_sequence", sequenceName = "test_result_sequence", allocationSize = 1, initialValue = 1)
+  @Column(name = "id_test_result",  nullable = false, unique = true)
   private Long testResultId;
   @Column(name = "candidate_id")
   private int candidateId;

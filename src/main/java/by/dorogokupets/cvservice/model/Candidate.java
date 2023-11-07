@@ -1,24 +1,25 @@
 package by.dorogokupets.cvservice.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
-import jakarta.persistence.Entity;
 import org.antlr.v4.runtime.misc.NotNull;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
-@Table(name ="candidates")
+@Table(name = "candidates")
 public class Candidate {
 
   @Id
-  @Column(name = "id_candidate")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "candidate_sequence")
+  @SequenceGenerator(name = "candidate_sequence", sequenceName = "candidate_sequence", allocationSize = 1, initialValue = 1)
+  @Column(name = "id_candidate", nullable = false, unique = true)
   private Long candidateId;
   @Column(name = "first_name")
   private String firstName;
@@ -26,12 +27,8 @@ public class Candidate {
   private String lastName;
   @Column(name = "patronymic")
   private String patronymic;
-  @Column(name = "photo")
-  private String photo;
   @Column(name = "description")
   private String description;
-  @Column(name = "cv_file")
-  private String cvFile;
   @Column(name = "possible_directions")
   private int possibleDirections;
 

@@ -1,10 +1,9 @@
 package by.dorogokupets.cvservice.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
-import jakarta.persistence.Entity;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,8 +15,10 @@ import jakarta.persistence.Entity;
 @Table(name = "directions")
 public class Direction {
   @Id
-  @Column(name = "id_direction")
-  private long directionId;
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "direction_sequence")
+  @SequenceGenerator(name = "direction_sequence", sequenceName = "direction_sequence", allocationSize = 1, initialValue = 1)
+  @Column(name = "id_direction", nullable = false, unique = true)
+  private Long directionId;
   @Column(name = "name")
   private String name;
   @Column(name = "description")

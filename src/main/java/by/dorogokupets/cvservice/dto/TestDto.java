@@ -1,13 +1,18 @@
 package by.dorogokupets.cvservice.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import by.dorogokupets.cvservice.model.Direction;
+import lombok.*;
 
-@Data
+import java.util.List;
+
+@Getter
+@Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class TestDto {
   private long testId;
   private String title;
   private String description;
-  private int direction;
+  private Long direction;
 }
