@@ -1,7 +1,7 @@
 package by.dorogokupets.cvservice.controller;
 
-import by.dorogokupets.cvservice.dto.TestResultDto;
-import by.dorogokupets.cvservice.model.TestResult;
+import by.dorogokupets.cvservice.domain.dto.TestResultDto;
+import by.dorogokupets.cvservice.domain.model.TestResult;
 import by.dorogokupets.cvservice.service.TestResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,7 +24,7 @@ public class TestResultController {
   @GetMapping("/cv-service/test-results")
   public String showTestResults(
           @RequestParam(defaultValue = "1") int page,
-          @RequestParam(defaultValue = "name") String sortBy,
+          @RequestParam(defaultValue = "testResultId") String sortBy,
           @RequestParam(defaultValue = "ASC") String sortDirection,
           Model model
   ) {

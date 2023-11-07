@@ -1,6 +1,6 @@
 package by.dorogokupets.cvservice.repository;
 
-import by.dorogokupets.cvservice.model.Candidate;
+import by.dorogokupets.cvservice.domain.model.Candidate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

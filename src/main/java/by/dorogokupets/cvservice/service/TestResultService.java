@@ -1,16 +1,15 @@
 package by.dorogokupets.cvservice.service;
 
-import by.dorogokupets.cvservice.dto.TestResultDto;
-import by.dorogokupets.cvservice.model.TestResult;
-
-import java.util.List;
+import by.dorogokupets.cvservice.domain.dto.TestResultDto;
+import by.dorogokupets.cvservice.domain.model.TestResult;
+import org.springframework.data.domain.Page;
 
 public interface TestResultService {
-  List<TestResult> findAll();
+  Page<TestResult> findAll(int pageNo, int pageSize, String sortBy, String sortDirection);
 
   TestResultDto findTestResultDtoById(Long id);
 
   void update(TestResultDto testResultDto);
 
-  void save(TestResult testResult);
+  void save(TestResultDto testResultDto);
 }

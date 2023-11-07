@@ -61,13 +61,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="testResultDto : ${testResultDtoList}">
-            <td th:text="${testResultDto.testResultId}"></td>
-            <td th:text="${testResultDto.candidateId}"></td>
-            <td th:text="${testResultDto.testId}"></td>
-            <td><input type="date" id="date" th:field="*{testResultDto.date}"></td>
-            <td th:text="${testResultDto.mark}+'%'"></td>
-            <td><a th:href="@{'/cv-service/test-result/edit/'+${testResultDto.testResultId}}" class="btn btn-primary"
+        <tr th:each="testResult : ${testResultPage}">
+            <td th:text="${testResult.testResultId}"></td>
+            <td th:text="${testResult.candidateId}"></td>
+            <td th:text="${testResult.testId}"></td>
+            <td><input type="date" id="date" th:field="*{testResult.date}"></td>
+            <td th:text="${testResult.mark}+'%'"></td>
+            <td><a th:href="@{'/cv-service/test-result/edit/'+${testResult.testResultId}}" class="btn btn-primary"
                    style="background-color: #007bff; border-color: #007bff; color: white">Edit</a></td>
         </tr>
         </tbody>

@@ -1,7 +1,7 @@
 package by.dorogokupets.cvservice.controller;
 
-import by.dorogokupets.cvservice.dto.DirectionDto;
-import by.dorogokupets.cvservice.model.Direction;
+import by.dorogokupets.cvservice.domain.dto.DirectionDto;
+import by.dorogokupets.cvservice.domain.model.Direction;
 import by.dorogokupets.cvservice.service.DirectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,7 +30,7 @@ public class DirectionController {
           @RequestParam(defaultValue = "ASC") String sortDirection,
           Model model
   ) {
-    Page<Direction> directionPage = directionService.findAll(page -1, 8, sortBy, sortDirection);
+    Page<Direction> directionPage = directionService.findAll(page - 1, 8, sortBy, sortDirection);
     model.addAttribute(DIRECTION_PAGE, directionPage);
     return "directions";
   }

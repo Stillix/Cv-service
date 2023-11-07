@@ -1,14 +1,17 @@
 package by.dorogokupets.cvservice.service.impl;
 
-import by.dorogokupets.cvservice.dto.TestDto;
+import by.dorogokupets.cvservice.domain.dto.TestDto;
 import by.dorogokupets.cvservice.mapper.TestMapper;
-import by.dorogokupets.cvservice.model.Test;
+import by.dorogokupets.cvservice.domain.model.Test;
 import by.dorogokupets.cvservice.service.TestService;
 import by.dorogokupets.cvservice.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,8 +26,10 @@ public class TestServiceImpl implements TestService {
   }
 
   @Override
-  public List<Test> findAll() {
-    return testRepository.findAll();
+  public Page<Test> findAll(int pageNo, int pageSize, String sortBy, String sortDirection) {
+    Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
+    Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
+    return testRepository.findAll(pageable);
   }
 
   @Override
@@ -40,7 +45,8 @@ public class TestServiceImpl implements TestService {
   }
 
   @Override
-  public void save(TestDto TestDto) {
-
+  public void save(TestDto testDto) {
+    Test test = testMapper.mapToTest(testDto);
+    testRepository.save(test);
   }
 }

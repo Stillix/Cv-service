@@ -1,21 +1,17 @@
 package by.dorogokupets.cvservice.controller;
 
-import by.dorogokupets.cvservice.model.Candidate;
-import by.dorogokupets.cvservice.model.FileDB;
+import by.dorogokupets.cvservice.domain.model.Candidate;
+import by.dorogokupets.cvservice.domain.model.FileDB;
 import by.dorogokupets.cvservice.service.CandidateService;
 import by.dorogokupets.cvservice.service.FilesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.server.ResponseStatusException;
 
 @Controller
 @RequestMapping("/cv-service")

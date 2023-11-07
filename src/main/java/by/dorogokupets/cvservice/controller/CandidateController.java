@@ -1,10 +1,9 @@
 package by.dorogokupets.cvservice.controller;
 
-import by.dorogokupets.cvservice.dto.CandidateDto;
+import by.dorogokupets.cvservice.domain.dto.CandidateDto;
 import by.dorogokupets.cvservice.exception.ServiceException;
-import by.dorogokupets.cvservice.model.Candidate;
+import by.dorogokupets.cvservice.domain.model.Candidate;
 import by.dorogokupets.cvservice.service.CandidateService;
-import by.dorogokupets.cvservice.service.FilesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
@@ -19,13 +18,11 @@ import static by.dorogokupets.cvservice.controller.RequestAttributeName.*;
 public class CandidateController {
 
   private final CandidateService candidateService;
-  private final FilesService filesService;
 
   @Autowired
-  public CandidateController(CandidateService candidateService,
-                             FilesService filesService) {
+  public CandidateController(CandidateService candidateService) {
     this.candidateService = candidateService;
-    this.filesService = filesService;
+
   }
 
   @GetMapping("/cv-service/candidates")

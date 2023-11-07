@@ -1,7 +1,7 @@
 package by.dorogokupets.cvservice.service;
 
-import by.dorogokupets.cvservice.model.Candidate;
-import by.dorogokupets.cvservice.model.FileDB;
+import by.dorogokupets.cvservice.domain.model.Candidate;
+import by.dorogokupets.cvservice.domain.model.FileDB;
 
 public interface FilesService {
 

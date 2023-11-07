@@ -3,7 +3,6 @@ package by.dorogokupets.cvservice.domain.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 
 @Entity
 @Getter

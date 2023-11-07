@@ -104,7 +104,7 @@
     [[${message}]]
 </div>
 <div class="candidates">
-    <div th:each="candidateDto : ${candidateDTOList}">
+    <div th:each="candidateDto : ${candidatePage}">
         <div class="candidate">
             <img th:src="@{'/cv-service/images/' + ${candidateDto.candidateId}}" alt="Фото кандидата">
             <h2 th:text="${candidateDto.lastName + ' ' + candidateDto.firstName + ' ' + candidateDto.patronymic}"></h2>

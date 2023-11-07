@@ -1,7 +1,7 @@
 package by.dorogokupets.cvservice.mapper;
 
-import by.dorogokupets.cvservice.dto.TestDto;
-import by.dorogokupets.cvservice.model.Test;
+import by.dorogokupets.cvservice.domain.dto.TestDto;
+import by.dorogokupets.cvservice.domain.model.Test;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Controller;
 

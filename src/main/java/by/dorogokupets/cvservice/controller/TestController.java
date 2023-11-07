@@ -1,8 +1,7 @@
 package by.dorogokupets.cvservice.controller;
 
-import by.dorogokupets.cvservice.dto.TestDto;
-import by.dorogokupets.cvservice.model.Test;
-import by.dorogokupets.cvservice.service.DirectionService;
+import by.dorogokupets.cvservice.domain.dto.TestDto;
+import by.dorogokupets.cvservice.domain.model.Test;
 import by.dorogokupets.cvservice.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,22 +16,20 @@ import static by.dorogokupets.cvservice.controller.RequestAttributeName.*;
 public class TestController {
 
   private final TestService testService;
-  private DirectionService directionService;
 
   @Autowired
-  public TestController(TestService testService, DirectionService directionService) {
+  public TestController(TestService testService) {
     this.testService = testService;
-    this.directionService = directionService;
   }
 
   @GetMapping("/cv-service/tests")
   public String showTests(
           @RequestParam(defaultValue = "1") int page,
-          @RequestParam(defaultValue = "name") String sortBy,
+          @RequestParam(defaultValue = "title") String sortBy,
           @RequestParam(defaultValue = "ASC") String sortDirection,
           Model model
   ) {
-    Page<Test> testPage = testService.findAll(page -1, 8, sortBy, sortDirection);
+    Page<Test> testPage = testService.findAll(page - 1, 8, sortBy, sortDirection);
     model.addAttribute(TEST_PAGE, testPage);
     return "tests";
   }
