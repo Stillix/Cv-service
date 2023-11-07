@@ -1,4 +1,4 @@
-package by.dorogokupets.cvservice.dto;
+package by.dorogokupets.cvservice.domain.dto;
 
 import lombok.*;
 

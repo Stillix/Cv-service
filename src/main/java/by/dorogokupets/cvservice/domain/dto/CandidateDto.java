@@ -1,6 +1,5 @@
-package by.dorogokupets.cvservice.dto;
+package by.dorogokupets.cvservice.domain.dto;
 
-import by.dorogokupets.cvservice.model.FileDB;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 

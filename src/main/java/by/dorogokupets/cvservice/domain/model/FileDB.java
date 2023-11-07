@@ -1,16 +1,9 @@
-package by.dorogokupets.cvservice.model;
+package by.dorogokupets.cvservice.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-import org.hibernate.annotations.Type;
-
-import java.util.List;
 
 
 @Entity

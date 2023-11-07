@@ -1,9 +1,6 @@
-package by.dorogokupets.cvservice.dto;
+package by.dorogokupets.cvservice.domain.dto;
 
-import by.dorogokupets.cvservice.model.Direction;
 import lombok.*;
-
-import java.util.List;
 
 @Getter
 @Setter

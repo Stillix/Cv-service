@@ -1,4 +1,4 @@
-package by.dorogokupets.cvservice.model;
+package by.dorogokupets.cvservice.domain.model;
 
 import java.time.LocalDateTime;
 
