@@ -9,8 +9,6 @@ import java.util.Optional;
 @Repository
 public interface DirectionRepository extends JpaRepository<Direction, Long> {
 
-  Direction findDirectionByName(String name);
-
   Optional<Direction> findById(Long id);
 
 }
