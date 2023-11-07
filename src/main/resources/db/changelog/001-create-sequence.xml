@@ -5,6 +5,10 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.10.xsd">
 
+    <changeSet author="dorogokupets" id="create-file-sequence">
+        <createSequence schemaName="cvservice" sequenceName="file_sequence" incrementBy="1" startValue="1"
+                        minValue="1"/>
+    </changeSet>
     <changeSet author="dorogokupets" id="create-candidate-sequence">
         <createSequence schemaName="cvservice" sequenceName="candidate_sequence" incrementBy="1" startValue="1"
                         minValue="1"/>
