@@ -1,9 +1,11 @@
 package by.dorogokupets.cvservice.domain.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Getter
@@ -23,8 +25,9 @@ public class TestResult {
   private int candidateId;
   @Column(name = "test_id")
   private int testId;
+  @DateTimeFormat(pattern="yyyy-MM-dd")
   @Column(name = "date")
-  private LocalDateTime date;
+  private LocalDate date;
   @Column(name = "mark")
   private int mark;
 

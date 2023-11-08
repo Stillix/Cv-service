@@ -2,6 +2,7 @@ package by.dorogokupets.cvservice.domain.dto;
 
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -13,7 +14,7 @@ public class TestResultDto {
   private Long testResultId;
   private int candidateId;
   private int testId;
-  private LocalDateTime date;
+  private LocalDate date;
   private int mark;
 
 }

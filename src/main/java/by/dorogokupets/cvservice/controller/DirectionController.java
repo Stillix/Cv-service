@@ -30,7 +30,7 @@ public class DirectionController {
           @RequestParam(defaultValue = "ASC") String sortDirection,
           Model model
   ) {
-    Page<Direction> directionPage = directionService.findAll(page - 1, 8, sortBy, sortDirection);
+    Page<Direction> directionPage = directionService.findAll(page - 1, 5, sortBy, sortDirection);
     model.addAttribute(DIRECTION_PAGE, directionPage);
     return "directions";
   }

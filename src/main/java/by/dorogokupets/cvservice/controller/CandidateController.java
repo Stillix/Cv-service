@@ -4,6 +4,7 @@ import by.dorogokupets.cvservice.domain.dto.CandidateDto;
 import by.dorogokupets.cvservice.exception.ServiceException;
 import by.dorogokupets.cvservice.domain.model.Candidate;
 import by.dorogokupets.cvservice.service.CandidateService;
+import by.dorogokupets.cvservice.service.DirectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
@@ -18,11 +19,12 @@ import static by.dorogokupets.cvservice.controller.RequestAttributeName.*;
 public class CandidateController {
 
   private final CandidateService candidateService;
+  private final DirectionService directionService;
 
   @Autowired
-  public CandidateController(CandidateService candidateService) {
+  public CandidateController(CandidateService candidateService, DirectionService directionService) {
     this.candidateService = candidateService;
-
+    this.directionService = directionService;
   }
 
   @GetMapping("/cv-service/candidates")
@@ -47,6 +49,7 @@ public class CandidateController {
   @GetMapping("/cv-service/candidate/new")
   public String showCreateForm(Model model) {
     model.addAttribute(CANDIDATE_DTO, new CandidateDto());
+    model.addAttribute("possibleDirections", directionService.findAll());
     return "candidate-form";
   }
 
@@ -61,6 +64,7 @@ public class CandidateController {
   public String showEditForm(@PathVariable("id") Long candidateId, Model model) {
     CandidateDto candidateDTO = candidateService.findCandidateDtoById(candidateId);
     model.addAttribute(CANDIDATE_DTO, candidateDTO);
+    model.addAttribute("possibleDirections", directionService.findAll());
     return "edit-candidate";
   }
 

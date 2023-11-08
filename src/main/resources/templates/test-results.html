@@ -42,9 +42,11 @@
             </div>
         </div>
     </nav>
-</header><br><br>
+</header>
+<br><br>
 <h1 style="color: white;">Результаты тестов</h1>
-<p><a class="btn btn-primary" href="/cv-service/test-result/new" style="background-color: lightgreen; border-color: black; color: white">Add test result</a></p>
+<p><a class="btn btn-primary" href="/cv-service/test-result/new"
+      style="background-color: lightgreen; border-color: black; color: white">Add test result</a></p>
 <div th:if="${message}" class="alert alert-success text-center">
     [[${message}]]
 </div>
@@ -65,7 +67,7 @@
             <td th:text="${testResult.testResultId}"></td>
             <td th:text="${testResult.candidateId}"></td>
             <td th:text="${testResult.testId}"></td>
-            <td><input type="date" id="date" th:field="*{testResult.date}"></td>
+            <td th:text="${testResult.date}"></td>
             <td th:text="${testResult.mark}+'%'"></td>
             <td><a th:href="@{'/cv-service/test-result/edit/'+${testResult.testResultId}}" class="btn btn-primary"
                    style="background-color: #007bff; border-color: #007bff; color: white">Edit</a></td>

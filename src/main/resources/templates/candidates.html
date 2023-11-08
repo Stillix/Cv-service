@@ -110,10 +110,8 @@
             <h2 th:text="${candidateDto.lastName + ' ' + candidateDto.firstName + ' ' + candidateDto.patronymic}"></h2>
             <p class="description" th:text="${candidateDto.description}"></p>
             <p><a th:href="@{'/cv-service/download-file/' + ${candidateDto.candidateId}}">Скачать CV</a></p>
-            <p>Список возможных направлений:</p>
-            <ul>
-                <li th:each="direction : ${candidateDto.possibleDirections}" th:text="${direction}"></li>
-            </ul>
+            <p>Направление</p>
+            <p class="description" th:text="${candidateDto.possibleDirections}"></p>
             <a th:href="@{'/cv-service/candidate/edit/' + ${candidateDto.candidateId}}" class="btn btn-primary">Редактировать</a>
         </div>
     </div>

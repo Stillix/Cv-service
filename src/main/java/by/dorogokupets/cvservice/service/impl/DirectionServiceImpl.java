@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,6 +31,11 @@ public class DirectionServiceImpl implements DirectionService {
     Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
     Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
     return directionRepository.findAll(pageable);
+  }
+
+  @Override
+  public List<Direction> findAll() {
+    return directionRepository.findAll();
   }
 
   @Override

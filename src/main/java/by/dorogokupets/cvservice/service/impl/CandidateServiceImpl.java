@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -42,6 +43,7 @@ public class CandidateServiceImpl implements CandidateService {
   }
 
   @Override
+  @Transactional(rollbackFor = Exception.class)
   public void save(CandidateDto candidateDto) throws ServiceException {
     Candidate candidate = candidateMapper.mapToCandidate(candidateDto);
 
@@ -86,6 +88,7 @@ public class CandidateServiceImpl implements CandidateService {
   }
 
   @Override
+  @Transactional(rollbackFor = Exception.class)
   public void update(CandidateDto candidateDto) throws ServiceException {
     Candidate currentCandidate = candidateRepository.getReferenceById(candidateDto.getCandidateId());
     currentCandidate.setDescription(candidateDto.getDescription());
@@ -97,25 +100,22 @@ public class CandidateServiceImpl implements CandidateService {
     FileDB cvFile = filesRepository.findByCandidateAndContentType(currentCandidate, MediaType.APPLICATION_PDF_VALUE);
     FileDB image = filesRepository.findByCandidateAndContentType(currentCandidate, MediaType.IMAGE_PNG_VALUE);
 
-    cvFile.setSize(candidateDto.getCvFile().getSize());
-    cvFile.setName(StringUtils.cleanPath(candidateDto.getCvFile().getOriginalFilename()));
-    cvFile.setContentType(cvFile.getContentType());
-    try {
-      cvFile.setData(candidateDto.getCvFile().getBytes());
-    } catch (IOException e) {
-      throw new ServiceException(e);
-    }
+    updateFileDB(cvFile, candidateDto.getCvFile());
+    updateFileDB(image, candidateDto.getPhoto());
 
-    image.setSize(candidateDto.getPhoto().getSize());
-    image.setName(StringUtils.cleanPath(candidateDto.getPhoto().getOriginalFilename()));
-    image.setContentType(image.getContentType());
-    try {
-      image.setData(candidateDto.getPhoto().getBytes());
-    } catch (IOException e) {
-      throw new ServiceException(e);
-    }
     filesRepository.save(cvFile);
     filesRepository.save(image);
     candidateRepository.save(currentCandidate);
+  }
+
+  private void updateFileDB(FileDB fileDB, MultipartFile fileToUpdate) throws ServiceException {
+    fileDB.setSize(fileToUpdate.getSize());
+    fileDB.setName(StringUtils.cleanPath(fileToUpdate.getOriginalFilename()));
+    fileDB.setContentType(fileDB.getContentType());
+    try {
+      fileDB.setData(fileToUpdate.getBytes());
+    } catch (IOException e) {
+      throw new ServiceException(e);
+    }
   }
 }
