@@ -8,3 +8,16 @@ services:
       - 'POSTGRES_PASSWORD=ltl123'
     ports:
       - '5432:5432'
+
+  client-backend:
+    image: client:0.0.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8181:8181"
+    depends_on:
+      - postgres
+    environment:
+      - SERVER_PORT= 8181
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/Cv-service
