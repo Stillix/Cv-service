@@ -114,9 +114,9 @@
 <h1>Добавить направление</h1>
 <form th:object="${directionDto}" method="post" action="/cv-service/direction/save">
     <label for="name">Название:</label>
-    <input type="text" id="name" th:field="*{name}"/><br/>
+    <input type="text" id="name" th:field="*{name}" required/><br/>
     <label for="description">Описание:</label>
-    <input type="text" id="description" th:field="*{description}"/><br/>
+    <input type="text" id="description" th:field="*{description}" required/><br/>
     <button type="submit">Сохранить направление</button>
 </form>
 </body>

@@ -16,5 +16,5 @@ public class CandidateDto {
   private String description;
   private MultipartFile  cvFile;
   private MultipartFile photo;
-  private int possibleDirections;
+  private Long direction;
 }

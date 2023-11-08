@@ -129,8 +129,8 @@
     <textarea type="text" id="description" th:field="*{description}"></textarea><br/>
     <label for="cvFile">CV File (в PDF):</label>
     <input type="file" id="cvFile" th:field="*{cvFile}" multiple="multiple"/><br/>
-    <label for="directions">Направление:</label>
-    <select class="form-control" id="directions">
+    <label for="directions">Выберите направление:</label>
+    <select class="form-control" id="directions" th:field="*{direction}"  required>
         <option th:each="direction : ${possibleDirections}" th:value="${direction.directionId}"
                 th:text="${direction.name}"></option>
     </select>

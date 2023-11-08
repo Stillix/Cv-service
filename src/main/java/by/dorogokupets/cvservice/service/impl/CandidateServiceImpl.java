@@ -51,6 +51,7 @@ public class CandidateServiceImpl implements CandidateService {
     FileDB imageFileDb = convertToFileDB(candidateDto.getPhoto());
 
     Candidate savedCandidate = candidateRepository.save(candidate);
+
     cvFileDb.setCandidate(savedCandidate);
     imageFileDb.setCandidate(savedCandidate);
 
@@ -95,7 +96,7 @@ public class CandidateServiceImpl implements CandidateService {
     currentCandidate.setPatronymic(candidateDto.getPatronymic());
     currentCandidate.setFirstName(candidateDto.getFirstName());
     currentCandidate.setLastName(candidateDto.getLastName());
-    currentCandidate.setPossibleDirections(candidateDto.getPossibleDirections());
+    currentCandidate.setDirection(candidateDto.getDirection());
 
     FileDB cvFile = filesRepository.findByCandidateAndContentType(currentCandidate, MediaType.APPLICATION_PDF_VALUE);
     FileDB image = filesRepository.findByCandidateAndContentType(currentCandidate, MediaType.IMAGE_PNG_VALUE);

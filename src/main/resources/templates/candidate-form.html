@@ -112,21 +112,21 @@
 <h1>Добавить кандидата</h1>
 <form th:object="${candidateDto}" method="post" action="/cv-service/candidate/save" enctype="multipart/form-data">
     <label for="firstName">Имя:</label>
-    <input type="text" id="firstName" th:field="*{firstName}"/><br/>
+    <input type="text" id="firstName" th:field="*{firstName}" required/><br/>
     <label for="lastName">Фамилия:</label>
-    <input type="text" id="lastName" th:field="*{lastName}"/><br/>
+    <input type="text" id="lastName" th:field="*{lastName}" required/><br/>
     <label for="patronymic">Отчество:</label>
-    <input type="text" id="patronymic" th:field="*{patronymic}"/><br/>
+    <input type="text" id="patronymic" th:field="*{patronymic}" required/><br/>
     <label for="photo">Фото (в PNG):</label>
-    <input type="file" id="photo" th:field="*{photo}" multiple="multiple"/><br/>
+    <input type="file" id="photo" th:field="*{photo}" multiple="multiple" required/><br/>
     <label for="description">Описание:</label>
-    <input type="text" id="description" th:field="*{description}"/><br/>
+    <input type="text" id="description" th:field="*{description}" required/><br/>
     <label for="cvFile">CV File (в PDF):</label>
     <input type="file" id="cvFile" th:field="*{cvFile}" accept=".application/pdf" multiple="multiple"/><br/>
-    <label for="directions">Направление:</label>
-        <select id="directions" class="form-control">
-            <option th:each="direction : ${possibleDirections}" th:value="${direction.directionId}" th:text="${direction.name}"></option>
-        </select>
+    <select class="form-control" id="directions" th:field="*{direction}"  required>
+        <option th:each="direction : ${possibleDirections}" th:value="${direction.directionId}"
+                th:text="${direction.name}"></option>
+    </select>
     <button type="submit">Сохранить кандидата</button>
 
 </form>

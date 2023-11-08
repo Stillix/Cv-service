@@ -11,7 +11,7 @@
 <!--            <column name="last_name" value="Дорогокупец"/>-->
 <!--            <column name="patronymic" value="Васильевич"/>-->
 <!--            <column name="description" value="Студент БНТУ. 20 лет."/>-->
-<!--            <column name="direction" value="1"/>-->
+<!--            <column name="direction_id" value="1"/>-->
 <!--        </insert>-->
 <!--    </changeSet>-->
 

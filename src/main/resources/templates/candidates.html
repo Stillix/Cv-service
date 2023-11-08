@@ -111,7 +111,7 @@
             <p class="description" th:text="${candidateDto.description}"></p>
             <p><a th:href="@{'/cv-service/download-file/' + ${candidateDto.candidateId}}">Скачать CV</a></p>
             <p>Направление</p>
-            <p class="description" th:text="${candidateDto.possibleDirections}"></p>
+            <p class="direction" th:text="${candidateDto.direction}"></p>
             <a th:href="@{'/cv-service/candidate/edit/' + ${candidateDto.candidateId}}" class="btn btn-primary">Редактировать</a>
         </div>
     </div>
