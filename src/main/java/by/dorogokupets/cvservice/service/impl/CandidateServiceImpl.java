@@ -97,15 +97,31 @@ public class CandidateServiceImpl implements CandidateService {
     currentCandidate.setFirstName(candidateDto.getFirstName());
     currentCandidate.setLastName(candidateDto.getLastName());
     currentCandidate.setDirection(candidateDto.getDirection());
-
     FileDB cvFile = filesRepository.findByCandidateAndContentType(currentCandidate, MediaType.APPLICATION_PDF_VALUE);
     FileDB image = filesRepository.findByCandidateAndContentType(currentCandidate, MediaType.IMAGE_PNG_VALUE);
 
-    updateFileDB(cvFile, candidateDto.getCvFile());
-    updateFileDB(image, candidateDto.getPhoto());
+    MultipartFile cvFileToUpdate = candidateDto.getCvFile();
+    MultipartFile imageFileToUpdate = candidateDto.getPhoto();
 
-    filesRepository.save(cvFile);
-    filesRepository.save(image);
+    if (cvFileToUpdate != null) {
+      if (cvFile == null) {
+        cvFile = convertToFileDB(cvFileToUpdate);
+        cvFile.setCandidate(currentCandidate);
+      } else {
+        updateFileDB(cvFile, cvFileToUpdate);
+      }
+      filesRepository.save(cvFile);
+    }
+
+    if (imageFileToUpdate != null) {
+      if (image == null) {
+        image = convertToFileDB(imageFileToUpdate);
+        image.setCandidate(currentCandidate);
+      } else {
+        updateFileDB(image, imageFileToUpdate);
+      }
+      filesRepository.save(image);
+    }
     candidateRepository.save(currentCandidate);
   }
 
