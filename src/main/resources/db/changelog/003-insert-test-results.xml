@@ -8,7 +8,7 @@
             <column name="id_test_result" valueSequenceNext="test_result_sequence"/>
             <column name="candidate_id" value="1"/>
             <column name="test_id" value="1"/>
-            <column name="date" value="2023-11-02 15:21:49.364285"/>
+            <column name="date" value="2023-11-02"/>
             <column name="mark" value="39"/>
         </insert>
     </changeSet>
@@ -17,7 +17,7 @@
             <column name="id_test_result" valueSequenceNext="test_result_sequence"/>
             <column name="candidate_id" value="1"/>
             <column name="test_id" value="2"/>
-            <column name="date" value="2023-10-17 23:46:24.364285"/>
+            <column name="date" value="2023-10-17"/>
             <column name="mark" value="56"/>
         </insert>
     </changeSet>

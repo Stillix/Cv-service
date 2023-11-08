@@ -24,7 +24,7 @@ public class Candidate {
   private String patronymic;
   @Column(name = "description")
   private String description;
-  @Column(name = "direction_id")
+  @Column(name = "direction")
   private Long direction;
 
 }

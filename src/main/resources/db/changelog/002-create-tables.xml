@@ -9,7 +9,7 @@
 
     <changeSet author="dorogokupets" id="create-direction-table">
         <createTable tableName="directions" schemaName="cvservice">
-            <column name="id_direction" type="integer" valueComputed="nextval('direction_sequence')">
+            <column name="id_direction" type="bigint" valueComputed="nextval('direction_sequence')">
                 <constraints primaryKey="true" unique="true"/>
             </column>
             <column name="name" type="VARCHAR(50)"/>
@@ -19,47 +19,31 @@
 
     <changeSet author="dorogokupets" id="create-candidates-table">
         <createTable tableName="candidates" schemaName="cvservice">
-            <column name="id_candidate" type="integer" valueComputed="nextval('candidate_sequence')">
+            <column name="id_candidate" type="bigint" valueComputed="nextval('candidate_sequence')">
                 <constraints primaryKey="true" unique="true"/>
             </column>
             <column name="first_name" type="VARCHAR(20)"/>
             <column name="last_name" type="VARCHAR(25)"/>
             <column name="patronymic" type="VARCHAR(30)"/>
             <column name="description" type="text"/>
-            <column name="direction_id" type="bigint"/>
+            <column name="direction" type="bigint"/>
         </createTable>
         <addForeignKeyConstraint baseTableName="candidates" baseColumnNames="direction"
                                  referencedTableName="directions" referencedColumnNames="id_direction"
                                  constraintName="direction_id_fk" baseTableSchemaName="cvservice"
                                  referencedTableSchemaName="cvservice"/>
     </changeSet>
-<!--    <changeSet author="dorogokupets" id="create-file-table">-->
-<!--        <createTable tableName="files" schemaName="cvservice">-->
-<!--            <column name="id_file" type="integer" valueComputed="nextval('file_sequence')">-->
-<!--                <constraints primaryKey="true" unique="true"/>-->
-<!--            </column>-->
-<!--            <column name="content_type" type="VARCHAR(50)"/>-->
-<!--            <column name="data" type="oid"/>-->
-<!--            <column name="name" type="text"/>-->
-<!--            <column name="size" type="bigint"/>-->
-<!--            <column name="candidate_id" type="bigint"/>-->
-<!--        </createTable>-->
-<!--        <addForeignKeyConstraint baseTableName="files" baseColumnNames="candidate_id"-->
-<!--                                 referencedTableName="candidates" referencedColumnNames="id_candidate"-->
-<!--                                 constraintName="candidate_id_fk" baseTableSchemaName="cvservice"-->
-<!--                                 referencedTableSchemaName="cvservice"/>-->
-<!--    </changeSet>-->
 
     <changeSet author="dorogokupets" id="create-test-table">
         <createTable tableName="tests" schemaName="cvservice">
-            <column name="id_test" type="integer" valueComputed="nextval('test_sequence')">
+            <column name="id_test" type="bigint" valueComputed="nextval('test_sequence')">
                 <constraints primaryKey="true" unique="true"/>
             </column>
             <column name="title" type="text"/>
             <column name="description" type="text"/>
-            <column name="direction_id" type="BIGINT"/>
+            <column name="direction" type="BIGINT"/>
         </createTable>
-        <addForeignKeyConstraint baseTableName="tests" baseColumnNames="direction_id"
+        <addForeignKeyConstraint baseTableName="tests" baseColumnNames="direction"
                                  referencedTableName="directions" referencedColumnNames="id_direction"
                                  constraintName="direction_id_fk" baseTableSchemaName="cvservice"
                                  referencedTableSchemaName="cvservice"/>
@@ -67,12 +51,12 @@
 
     <changeSet author="dorogokupets" id="create-test-result-table">
         <createTable tableName="candidate_test_results" schemaName="cvservice">
-            <column name="id_test_result" type="integer" valueComputed="nextval('test_result_sequence')">
+            <column name="id_test_result" type="bigint" valueComputed="nextval('test_result_sequence')">
                 <constraints primaryKey="true" unique="true"/>
             </column>
             <column name="candidate_id" type="BIGINT"/>
             <column name="test_id" type="BIGINT"/>
-            <column name="date" type="TIMESTAMP"/>
+            <column name="date" type="date"/>
             <column name="mark" type="smallint"/>
         </createTable>
         <addForeignKeyConstraint baseTableName="candidate_test_results" baseColumnNames="candidate_id"
@@ -82,6 +66,23 @@
         <addForeignKeyConstraint baseTableName="candidate_test_results" baseColumnNames="test_id"
                                  referencedTableName="tests" referencedColumnNames="id_test"
                                  constraintName="test_id_fk" baseTableSchemaName="cvservice"
+                                 referencedTableSchemaName="cvservice"/>
+    </changeSet>
+
+    <changeSet author="dorogokupets" id="create-file-table">
+        <createTable tableName="files" schemaName="cvservice">
+            <column name="id_file" type="bigint" valueComputed="nextval('file_sequence')">
+                <constraints primaryKey="true" unique="true"/>
+            </column>
+            <column name="content_type" type="VARCHAR(50)"/>
+            <column name="data" type="oid"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="size" type="bigint"/>
+            <column name="candidate_id" type="bigint"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="files" baseColumnNames="candidate_id"
+                                 referencedTableName="candidates" referencedColumnNames="id_candidate"
+                                 constraintName="candidate_id_fk" baseTableSchemaName="cvservice"
                                  referencedTableSchemaName="cvservice"/>
     </changeSet>
 

@@ -131,7 +131,7 @@
     <input type="file" id="cvFile" th:field="*{cvFile}" multiple="multiple"/><br/>
     <label for="directions">Выберите направление:</label>
     <select class="form-control" id="directions" th:field="*{direction}"  required>
-        <option th:each="direction : ${possibleDirection}" th:value="${direction.directionId}"
+        <option th:each="direction : ${possibleDirections}" th:value="${direction.directionId}"
                 th:text="${direction.name}"></option>
     </select>
 

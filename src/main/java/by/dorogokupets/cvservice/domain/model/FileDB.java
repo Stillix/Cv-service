@@ -13,17 +13,14 @@ import lombok.Setter;
 public class FileDB {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
- /* @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "file_sequence")
-  @SequenceGenerator(name = "file_sequence", sequenceName = "file_sequence", allocationSize = 1, initialValue = 1)*/
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "file_sequence")
+  @SequenceGenerator(name = "file_sequence", sequenceName = "file_sequence", allocationSize = 1, initialValue = 1)
   @Column(name = "id_file", nullable = false, unique = true)
   private Long id;
-
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "candidate_id", nullable = false)
   private Candidate candidate;
-
 
   @Column
   private String name;
