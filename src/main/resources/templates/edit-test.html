@@ -116,8 +116,11 @@
     <input type="text" th:field="*{title}" id="title">
     <label for="description">Описание:</label>
     <input type="text" th:field="*{description}" id="description">
-    <label for="direction">Направление:</label><br>
-    <input type="text" th:field="*{direction}" id="direction">
+    <label for="directions">Выберите направление:</label>
+    <select class="form-control" id="directions" th:field="*{direction}"  required>
+        <option th:each="direction : ${possibleDirection}" th:value="${direction.directionId}"
+                th:text="${direction.name}"></option>
+    </select>
     <input type="submit" value="Сохранить изменения">
 </form>
 </body>

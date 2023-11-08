@@ -2,6 +2,7 @@ package by.dorogokupets.cvservice.controller;
 
 import by.dorogokupets.cvservice.domain.dto.TestDto;
 import by.dorogokupets.cvservice.domain.model.Test;
+import by.dorogokupets.cvservice.service.DirectionService;
 import by.dorogokupets.cvservice.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,10 +17,13 @@ import static by.dorogokupets.cvservice.controller.RequestAttributeName.*;
 public class TestController {
 
   private final TestService testService;
+  private final DirectionService directionService;
+
 
   @Autowired
-  public TestController(TestService testService) {
+  public TestController(TestService testService, DirectionService directionService) {
     this.testService = testService;
+    this.directionService = directionService;
   }
 
   @GetMapping("/cv-service/tests")
@@ -39,6 +43,8 @@ public class TestController {
   public String showEditForm(@PathVariable("id") Long testId, Model model) {
     TestDto testDto = testService.findTestDtoById(testId);
     model.addAttribute(TEST_DTO, testDto);
+    model.addAttribute("possibleDirection", directionService.findAll());
+
     return "edit-test";
   }
 
@@ -52,6 +58,7 @@ public class TestController {
   @GetMapping("/cv-service/test/new")
   public String showCreateForm(Model model) {
     model.addAttribute(TEST_DTO, new TestDto());
+    model.addAttribute("possibleDirection", directionService.findAll());
     return "test-form";
   }
 

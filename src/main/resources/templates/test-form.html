@@ -117,8 +117,11 @@
     <input type="text" id="title" th:field="*{title}" required/><br/>
     <label for="description">Описание:</label>
     <input type="text" id="description" th:field="*{description}" required/><br/>
-    <label for="direction">Направление:</label>
-    <input type="number" id="direction" th:field="*{direction}" required/><br/>
+    <label for="directions">Выберите направление:</label>
+    <select class="form-control" id="directions" th:field="*{direction}"  required>
+        <option th:each="direction : ${possibleDirection}" th:value="${direction.directionId}"
+                th:text="${direction.name}"></option>
+    </select>
     <button type="submit">Сохранить тест</button>
 </form>
 </body>
